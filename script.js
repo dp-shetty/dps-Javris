@@ -92,8 +92,11 @@ if ('webkitSpeechRecognition' in window && 'speechSynthesis' in window) {
   };
 
   recognition.onend = function() {
-      outputDiv.innerHTML = "Stopped listening. Click 'Start Listening' to try again.";
-  };
+    console.log('Speech recognition ended');
+    if (outputDiv.innerHTML !== "Stopped listening. Click 'Start Listening' to try again.") {
+        recognition.start();
+    }
+};
 } else {
   alert('Your browser does not support speech recognition or speech synthesis.');
 }
